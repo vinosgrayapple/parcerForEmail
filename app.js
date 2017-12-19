@@ -18,10 +18,10 @@ request(url, (err, resp, body) => {
           const childrenLast = $(this).children().last();
             const name = childrenLast.prev().text().split(' ');
              arr.push({
-                  "lastname":name[0],
-                  "firstname":name[1],
+                  "lastname":name[0] || '',
+                  "firstname":name[1] || '',
                   "email":childrenLast.text(),
-                  "name": `${name[0]} ${name[1]}`,
+                  "name": `${name[0] || ''} ${name[1] || ''}`,
                   "internalPhone": "",
                   "position": "",
                   "unit": "",
@@ -32,7 +32,7 @@ request(url, (err, resp, body) => {
               });
       });
 
-      fs.writeFile('users.json', JSON.stringify(arr), (err) => {
+    fs.writeFile('users.json', JSON.stringify(arr), (err) => {
             if (err) throw err;
             console.log('The file has been saved!');
           });
